@@ -35,6 +35,8 @@ Both functions are called outside, with `encoded, iv = encrypt(...)` using
 **tuple unpacking** to store the two return values into separate variables in 
 one line.
 
+Both functions are defined before being called. This follows Python convention of separating function definitions from execution.
+
 ## What I learned
 - How AES encryption works with CBC mode
 - The difference between CBC and CFB mode and why padding is needed for CBC
