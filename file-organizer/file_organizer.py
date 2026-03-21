@@ -1,7 +1,8 @@
 from pathlib import Path
 import shutil
+import sys
 
-locate_folder = Path(r'C:\Users\cmveg\Desktop\test folder\test')
+locate_folder = Path(sys.argv[1])
 
 extensions = {
     '.mp3': 'music',
