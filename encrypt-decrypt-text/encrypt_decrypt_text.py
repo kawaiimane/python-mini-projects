@@ -16,10 +16,6 @@ def encrypt(plain_text, key):
     return encoded, cipher_encrypt.iv
 
 
-encoded, iv = encrypt("twilight is the best movie ever", key)
-print(encoded, iv)
-
-
 def decrypt(encoded, iv):
 
     cipher_decrypt = AES.new(key, AES.MODE_CBC, iv)
@@ -30,4 +26,6 @@ def decrypt(encoded, iv):
     return unpadded
 
 
+encoded, iv = encrypt("twilight is the best movie ever", key)
+print(encoded, iv)
 print(decrypt(encoded, iv))
