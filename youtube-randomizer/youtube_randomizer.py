@@ -47,7 +47,7 @@ def get_random_video(videos):
     return f'https://www.youtube.com/watch?v={rand_video["snippet"]["resourceId"]["videoId"]}'
 
 
-username = input('Enter a YouTube username: @')
-playlist_id = get_channel_id(username)
+username = input('Enter a YouTube username: ')
+playlist_id = get_channel_id(f'@{username}')
 videos = get_videos(playlist_id)
 print(get_random_video(videos))
