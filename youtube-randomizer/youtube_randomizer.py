@@ -55,5 +55,5 @@ username = input('Enter a YouTube username: ')
 playlist_id = get_channel_id(f'@{username}')
 videos = get_videos(playlist_id)
 urls = get_random_video(videos)
-for url in urls:
-    print(url)
+for i, url in enumerate(urls, 1):
+    print(f'{i}) {url}\n')
