@@ -41,13 +41,19 @@ def get_videos(playlist_id):
 
 
 def get_random_video(videos):
+    urls = []
 
-    rand_video = random.choice(videos)
+    for _ in range(10):
+        rand_video = random.choice(videos)
+        urls.append(
+            f'https://www.youtube.com/watch?v={rand_video["snippet"]["resourceId"]["videoId"]}')
 
-    return f'https://www.youtube.com/watch?v={rand_video["snippet"]["resourceId"]["videoId"]}'
+    return urls
 
 
 username = input('Enter a YouTube username: ')
 playlist_id = get_channel_id(f'@{username}')
 videos = get_videos(playlist_id)
-print(get_random_video(videos))
+urls = get_random_video(videos)
+for url in urls:
+    print(url)
