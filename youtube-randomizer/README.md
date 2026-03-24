@@ -1,14 +1,14 @@
 # YouTube Video Randomizer
 
 ## Why I built this
-I wanted to watch some of my favorite YouTubers' older videos while waiting for them to upload again, but I never knew which one to pick. So I built a randomizer that grabs every video from a channel and gives you a random link to watch. This was also my first time working with an API, which was a cool experience.
+I wanted to watch some of my favorite YouTubers' older videos while waiting for them to upload again, but I never knew which one to pick. So I built a randomizer that grabs every video from a channel and gives you 10 random links to watch. This was also my first time working with an API, which was a cool experience.
 
 The only current limitation is that it doesn't separate YouTube Shorts from full length videos, so you may occasionally get a Short.
 
 ## Libraries used
 * `build` from `googleapiclient.discovery` — the main function used to connect to any Google API. You pass in the API name, version, and your key to build a service object that lets you make API calls
 * `load_dotenv` from `dotenv` — reads the `.env` file so your API key can be accessed securely without being hardcoded into your script
-* `random` — built into Python, used to pick a random video from the full list
+* `random` — built into Python, used to pick random videos from the full list
 * `os` — built into Python, used to read environment variables from the `.env` file with `os.getenv()`
 
 ## Setup
@@ -79,19 +79,20 @@ Here's how it works:
 This continues until every page has been collected — for a large channel like CoryxKenshin this means 1,700+ videos across 35+ API calls.
 
 ### `get_random_video(videos)`
-Takes the full list of videos, picks one at random using `random.choice()`, and returns a full YouTube URL. The video ID is extracted by navigating the nested dictionary: `video['snippet']['resourceId']['videoId']`, then formatted into a watchable link:
-```
-https://www.youtube.com/watch?v=VIDEO_ID
-```
+Takes the full list of videos and returns 10 random YouTube URLs. It loops 10 times using `range(10)`, picking a random video each time with `random.choice()` and appending the full URL to a list. The video ID is extracted by navigating the nested dictionary: `video['snippet']['resourceId']['videoId']`.
+
+The `_` in `for _ in range(10)` is a Python convention meaning "I don't need the loop variable, I just want to repeat this 10 times."
 
 ### Chaining it all together
 ```python
 username = input('Enter a YouTube username: ')
 playlist_id = get_channel_id(f'@{username}')
 videos = get_videos(playlist_id)
-print(get_random_video(videos))
+urls = get_random_video(videos)
+for i, url in enumerate(urls, 1):
+    print(f'{i}) {url}\n')
 ```
-The `@` is hardcoded so the user doesn't have to remember to include it. Each function feeds into the next — the username gets the playlist ID, the playlist ID gets the videos, the videos get randomized into a URL.
+The `@` is hardcoded so the user doesn't have to remember to include it. Each function feeds into the next — the username gets the playlist ID, the playlist ID gets the videos, the videos get randomized into 10 URLs. `enumerate()` is used to number each URL starting from 1, and a blank line is added after each one for readability.
 
 ## What I learned
 * How to connect to and use a real API for the first time
@@ -101,6 +102,8 @@ The `@` is hardcoded so the user doesn't have to remember to include it. Each fu
 * How pagination works and how to loop through multiple pages of API results
 * The difference between `forUsername` and `forHandle` for YouTube channels
 * How to chain multiple functions together so each one feeds into the next
+* How `enumerate()` numbers items in a list and why two variables are needed to unpack it
+* The `_` convention for loop variables you don't need
 
 ## Future improvements
 * Filter out YouTube Shorts so only full length videos are returned
