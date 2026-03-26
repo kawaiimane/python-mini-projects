@@ -8,7 +8,6 @@ import os
 from io import BytesIO
 import webbrowser
 import json
-import time
 from datetime import datetime, timedelta
 
 load_dotenv()
@@ -78,6 +77,12 @@ def window_gui():
     user_input = tk.Entry(root)
     user_input.grid(row=0, column=0, sticky='w')
 
+    quit_gui = tk.Button(root, text='Quit', command=root.destroy)
+    quit_gui.grid(row=0, column=4, sticky='e')
+
+    frame = tk.Frame(root, bg='#121212')
+    frame.grid(row=1, column=0, columnspan=5)
+
     def search_channel():
         username = user_input.get()
         playlist_id = get_channel_id(f'@{username}')
@@ -109,12 +114,6 @@ def window_gui():
 
     search = tk.Button(root, text='Search', command=search_channel)
     search.grid(row=0, column=0)
-
-    quit_gui = tk.Button(root, text='Quit', command=root.destroy)
-    quit_gui.grid(row=0, column=4, sticky='e')
-
-    frame = tk.Frame(root, bg='#121212')
-    frame.grid(row=1, column=0, columnspan=5)
 
     root.mainloop()
 
