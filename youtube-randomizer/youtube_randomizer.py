@@ -69,7 +69,7 @@ def get_random_video(videos):
 
 def window_gui():
     root = tk.Tk()
-    root.geometry('1230x720+665+470')
+    root.geometry('1230x739+665+350')
     root.overrideredirect(True)
     root.attributes('-topmost', True)
     root.config(bg='#121212')
