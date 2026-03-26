@@ -128,7 +128,7 @@ def save_cache(username, videos):
     }
 
     with open(channel_name, mode='w', encoding='utf-8') as file:
-        write_json = json.dump(data, file)
+        json.dump(data, file)
 
 
 def load_cache(username):
