@@ -56,7 +56,7 @@ def get_random_video(videos):
     thumbnails = []
     titles = []
 
-    for _ in range(10):
+    for _ in range(20):
         rand_video = random.choice(videos)
         urls.append(
             f'https://www.youtube.com/watch?v={rand_video["snippet"]["resourceId"]["videoId"]}')
@@ -69,7 +69,7 @@ def get_random_video(videos):
 
 def window_gui():
     root = tk.Tk()
-    root.geometry('1230x380+665+470')
+    root.geometry('1230x720+665+470')
     root.overrideredirect(True)
     root.attributes('-topmost', True)
     root.config(bg='#121212')
