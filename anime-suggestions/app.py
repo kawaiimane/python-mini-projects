@@ -4,7 +4,7 @@ from anime_suggestions import search, get_recommendations
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route('/')
 def index():
     return render_template('index.html')
 
