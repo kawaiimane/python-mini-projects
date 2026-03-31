@@ -9,9 +9,9 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/search', methods=['POST'])
+@app.route('/search', methods=['GET'])
 def get_anime():
-    title = request.form['Anime']
+    title = request.args['Anime']
     mal_id = search(title)
     recs = get_recommendations(mal_id)
 
