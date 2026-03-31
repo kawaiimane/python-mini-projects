@@ -251,3 +251,37 @@ if request.method == 'POST':
 else:
     title = request.args['Anime']
 ```
+
+---
+
+## HTML Headings
+
+`<h1>` through `<h6>` are heading tags. **H** stands for heading:
+- `<h1>` — biggest, most important heading. Usually the page title. Only one per page
+- `<h2>` — subheading, slightly smaller
+- `<h3>` through `<h6>` — progressively smaller headings
+
+Think of it like an outline — `<h1>` is the main topic, `<h2>` are sections, `<h3>` are subsections. Search engines also use headings to understand page structure.
+
+Style headings with CSS like any other element:
+```css
+h2 {
+    text-align: right;
+    margin: 0;
+    padding: 10px;
+    color: #C4C4C4;
+}
+```
+
+---
+
+## HTML Order = Display Order
+
+**This is critical:** HTML is read top to bottom and elements render in the order they appear. Put something first in the HTML and it shows up first on the page. Put it last and it shows up last.
+
+This is similar to Python being read top to bottom, but with one key difference:
+- **Python** — executes line by line at runtime
+- **HTML** — renders elements in document order. Position in the file = position on the page
+- **CSS** — does NOT work top to bottom the same way. All CSS applies at once. However if two rules target the same element, the one that appears **later** in the file wins. This is the "Cascading" part of CSS (Cascading Style Sheets)
+
+Practical example — if your `<h2>Results for: {{ title }}</h2>` appears after the grid div in your HTML, it will render below the grid on the page. Move it above the grid div in the HTML and it will appear above it.
