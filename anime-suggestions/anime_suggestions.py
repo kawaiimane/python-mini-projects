@@ -22,16 +22,7 @@ def get_recommendations(mal_id):
     recommendations = requests.get(f'{base_url}anime/{mal_id}/recommendations')
     time.sleep(1)
 
-    for i, item in enumerate(recommendations.json()['data'], 1):
-        print(i, item['entry']['title'])
-        print(item['entry']['url'], '\n')
-
-
-while True:
-    title = input('What is the name of the anime? ')
-    mal_id = search(title)
-    get_recommendations(mal_id)
-
-    repeat = input('Would you like to search for another anime? y/n: ')
-    if repeat != 'y':
-        break
+    recs = []
+    for item in recommendations.json()['data']:
+        recs.append(item)
+    return recs
