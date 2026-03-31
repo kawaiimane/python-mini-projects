@@ -235,3 +235,19 @@ Flask's built in templating engine. Lets you use Python-like logic inside HTML f
 - `{% endfor %}` — closes the loop. Jinja2 requires explicit closing tags
 
 The nested dictionary navigation inside `{{ }}` is identical to regular Python.
+
+---
+
+## request.args vs request.form vs request.values
+
+- `request.form['key']` — reads data sent via **POST** (from the request body)
+- `request.args['key']` — reads data sent via **GET** (from the URL parameters e.g. `?Anime=naruto`)
+- `request.values['key']` — checks both POST and GET automatically. Cleaner shortcut when you don't care which method was used
+
+If you need to handle both methods separately:
+```python
+if request.method == 'POST':
+    title = request.form['Anime']
+else:
+    title = request.args['Anime']
+```
