@@ -15,7 +15,7 @@ def get_anime():
     mal_id = search(title)
     recs = get_recommendations(mal_id)
 
-    return render_template('results.html', recs=recs)
+    return render_template('results.html', recs=recs, title=title)
 
 
 if __name__ == '__main__':
