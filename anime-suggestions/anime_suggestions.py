@@ -20,7 +20,6 @@ def get_recommendations(mal_id):
         return
 
     recommendations = requests.get(f'{base_url}anime/{mal_id}/recommendations')
-    time.sleep(1)
 
     recs = []
     for item in recommendations.json()['data']:
